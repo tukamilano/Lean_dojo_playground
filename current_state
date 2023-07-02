@@ -1,0 +1,8 @@
+
+example (p q : Prop) : p ∨ q → q ∨ p := by
+intro h
+cases h
+apply Or.inr
+assumption
+apply Or.inl
+assumption

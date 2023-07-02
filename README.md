@@ -1,1 +1,3 @@
 # Lean_dojo_playground
+pip install transformersをしたのちpython proof_search.pyをterminalで実行してください
+説明はもうちょっと後ほど追加します
