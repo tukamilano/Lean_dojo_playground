@@ -1,3 +1,8 @@
 # Lean_dojo_playground
-pip install transformersをしたのちpython proof_search.pyをterminalで実行してください
+まずLean4が動く状態にしてください
+
+pip install transformersをしたのち
+
+python proof_search.pyを実行してください
+
 説明はもうちょっと後ほど追加します
