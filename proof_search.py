@@ -2,11 +2,6 @@ from repl_lean4 import get_current_state
 from transformer import get_tactic
 from queue import Queue
 
-#Few shot使ってみてもいいかも
-initial_proof = """
-example (p q : Prop) : p ∨ q → q ∨ p := by
-"""
-
 def prove(proof):
     proof_stack = Queue(100)
     proof_stack.put({"proof": proof, "last_state": ""})
@@ -18,6 +13,8 @@ def prove(proof):
 
         state, completion = get_current_state(proof)
         if completion == "done":
+            print(proof)
+            print("done")
             return proof
         elif (completion == "error") or (state == last_state):
             pass
@@ -28,7 +25,11 @@ def prove(proof):
                 proof_stack.put({"proof": proof + tactic + "\n", "last_state": state})
 
 def main():
-    print(prove(initial_proof))
+    #Few shot使ってみてもいいかも
+    initial_proof = """
+    example (p q : Prop) : p ∨ q → q ∨ p := by
+    """
+    prove(initial_proof)
 
 if __name__ == "__main__":
     main()
