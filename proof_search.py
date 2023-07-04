@@ -27,9 +27,9 @@ def prove(proof):
 def main():
     #Few shot使ってみてもいいかも
     initial_proof = """
-    example (p q : Prop) : p ∨ q → q ∨ p := by
-    """
-    prove(initial_proof)
+example (p q : Prop) : p ∨ q → q ∨ p := by
+"""
+    print(prove(initial_proof))
 
 if __name__ == "__main__":
     main()
