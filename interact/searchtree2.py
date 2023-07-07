@@ -92,12 +92,18 @@ def extract_data2(root):
     return data
 
 repo = LeanGitRepo("https://github.com/yangky11/lean4-example", "7d711f6da4584ecb7d4f057715e1f72ba175c910")
-theorem = Theorem(repo, "Lean4Example.lean", "hello_world")
-
+theorem = Theorem(repo, "Lean4Example.lean", "hello_world") 
+# mathlibのtheoremを全て収集したい
+"""
+repo = LeanGitRepo("https://github.com/leanprover-community/mathlib4", "b342a33cff014bf01c918fe0199362c23566510c")
+theorem = Theorem(repo, "Mathlib/Data/Bool/Basic.lean", "exists_bool")
+"""
 with Dojo(theorem) as (dojo, state):
     root = Node(state=state, value=None)
     breadth_first_search(root)
+    # state, action, next_state, reward
     dataset = extract_data(root)
+    # state, reward
     dataset2 = extract_data2(root)
     for data in dataset:
         print(data)
