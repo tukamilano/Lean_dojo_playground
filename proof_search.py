@@ -29,7 +29,7 @@ def main():
     initial_proof = """
 example (p q : Prop) : p ∨ q → q ∨ p := by
 """
-    print(prove(initial_proof))
+    prove(initial_proof)
 
 if __name__ == "__main__":
     main()
