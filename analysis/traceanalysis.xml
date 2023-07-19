@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<TracedFile path="lean-example/src/example.lean" md5="c0cebeb0e7374edc9405ef40dc5689d8">
+     <FileNode start="(0, 1)" end="(5, 4)" id="1">
+             <ImportsNode start="(1, 1)" end="(1, 1)" id="2"/>
+             <CommandsNode start="(1, 1)" end="(1, 1)" id="3">
+                     <OpenNode start="(1, 1)" end="(1, 30)" id="4">
+                             <GroupNode start="(1, 6)" end="(1, 6)" id="5">
+                                     <IdentNode start="(1, 6)" end="(1, 6)" id="6" ident="nat"/>
+                                     <ExplicitNode start="(1, 10)" end="(1, 11)" id="7">
+                                             <IdentNode start="(1, 11)" end="(1, 11)" id="8" ident="add_assoc"/>
+                                             <IdentNode start="(1, 21)" end="(1, 21)" id="9" ident="add_comm"/>
+                                     </ExplicitNode>
+                             </GroupNode>
+                     </OpenNode>
+                     <TheoremNode start="(3, 1)" end="(6, 4)" id="10" name="hello_world" full_name="hello_world">
+                             <IdentNode start="(3, 9)" end="(3, 9)" id="11" ident="hello_world"/>
+                             <BindersNode start="(3, 21)" end="(3, 21)" id="12">
+                                     <OtherNode start="(3, 22)" end="(3, 22)" id="14" kind="binder_0">
+                                             <VarsNode start="(3, 22)" end="(3, 22)" id="13">
+                                                     <IdentNode start="(3, 22)" end="(3, 22)" id="15" ident="a"/>
+                                                     <IdentNode start="(3, 24)" end="(3, 24)" id="16" ident="b"/>
+                                                     <IdentNode start="(3, 26)" end="(3, 26)" id="17" ident="c"/>
+                                             </VarsNode>
+                                             <NotationNode start="(3, 30)" end="(3, 31)" id="18" value="exprℕ"/>
+                                     </OtherNode>
+                             </BindersNode>
+                             <NotationNode start="(3, 45)" end="(3, 56)" id="29" value="expr = ">
+                                     <NotationNode start="(3, 41)" end="(3, 44)" id="23" value="expr + ">
+                                             <NotationNode start="(3, 37)" end="(3, 40)" id="21" value="expr + ">
+                                                     <IdentNode start="(3, 35)" end="(3, 36)" id="19" ident="a"/>
+                                                     <IdentNode start="(3, 39)" end="(3, 40)" id="20" ident="b"/>
+                                             </NotationNode>
+                                             <IdentNode start="(3, 43)" end="(3, 44)" id="22" ident="c"/>
+                                     </NotationNode>
+                                     <NotationNode start="(3, 53)" end="(3, 56)" id="28" value="expr + ">
+                                             <NotationNode start="(3, 49)" end="(3, 52)" id="26" value="expr + ">
+                                                     <IdentNode start="(3, 47)" end="(3, 48)" id="24" ident="a"/>
+                                                     <IdentNode start="(3, 51)" end="(3, 52)" id="25" ident="c"/>
+                                             </NotationNode>
+                                             <IdentNode start="(3, 55)" end="(3, 56)" id="27" ident="b"/>
+                                     </NotationNode>
+                             </NotationNode>
+                             <NotationNode start="(4, 1)" end="(6, 4)" id="47" value="begin">
+                                     <BeginNode start="(4, 1)" end="(6, 4)" id="30">
+                                             <TacticNode start="(5, 3)" end="(5, 41)" id="31" tactic="rw [add_assoc, add_comm b, ←add_assoc]" state_before="a b c : ℕ ⊢ a + b + c = a + c + b" state_after="no goals">
+                                                     <ParseNode start="(5, 6)" end="(5, 41)" id="32">
+                                                             <TokenNode start="(5, 6)" end="(5, 6)" id="33" token="["/>
+                                                             <ExprNode start="(5, 7)" end="(5, 16)" id="35">
+                                                                     <IdentNode start="(5, 7)" end="(5, 16)" id="34" ident="add_assoc" expr="2" full_name="nat.add_assoc" def_path="lean/library/init/data/nat/lemmas.lean" def_pos="(22, 17)"/>
+                                                             </ExprNode>
+                                                             <TokenNode start="(5, 16)" end="(5, 16)" id="36" token=","/>
+                                                             <ExprNode start="(5, 18)" end="(5, 28)" id="40">
+                                                                     <AppNode start="(5, 18)" end="(5, 28)" id="39">
+                                                                            <IdentNode start="(5, 18)" end="(5, 26)" id="37" ident="add_comm" expr="1" full_name="nat.add_comm" def_path="lean/library/init/data/nat/lemmas.lean" def_pos="(15, 17)"/>
+                                                                            <IdentNode start="(5, 27)" end="(5, 28)" id="38" ident="b"/>
+                                                                     </AppNode>
+                                                             </ExprNode>
+                                                             <TokenNode start="(5, 28)" end="(5, 28)" id="41" token=","/>
+                                                             <TokenNode start="(5, 30)" end="(5, 30)" id="42" token="&amp;lt;-"/>
+                                                             <ExprNode start="(5, 31)" end="(5, 40)" id="44">
+                                                                     <IdentNode start="(5, 31)" end="(5, 40)" id="43" ident="add_assoc" expr="0" full_name="nat.add_assoc" def_path="lean/library/init/data/nat/lemmas.lean" def_pos="(22, 17)"/>
+                                                             </ExprNode>
+                                                             <TokenNode start="(5, 40)" end="(5, 40)" id="45" token="]"/>
+                                                     </ParseNode>
+                                                     <ParseNode start="(6, 1)" end="(5, 41)" id="46"/>
+                                             </TacticNode>
+                                     </BeginNode>
+                             </NotationNode>
+                     </TheoremNode>
+             </CommandsNode>
+     </FileNode>
+     <Exprs>
+             <ConstExpr tags="0" full_name="nat.add_assoc" levels="[]" def_path="lean/library/init/data/nat/lemmas.lean" def_pos="(22, 17)"/>
+             <ConstExpr tags="1" full_name="nat.add_comm" levels="[]" def_path="lean/library/init/data/nat/lemmas.lean" def_pos="(15, 17)"/>
+             <ConstExpr tags="2" full_name="nat.add_assoc" levels="[]" def_path="lean/library/init/data/nat/lemmas.lean" def_pos="(22, 17)"/>
+     </Exprs>
+     <Comments/>
+</TracedFile>

@@ -96,16 +96,28 @@ theorem = Theorem(repo, "Lean4Example.lean", "hello_world")
 # mathlibのtheoremを全て収集したい
 """
 repo = LeanGitRepo("https://github.com/leanprover-community/mathlib4", "b342a33cff014bf01c918fe0199362c23566510c")
+trace(repo, dst_dir="traced_lean4-example")
 theorem = Theorem(repo, "Mathlib/Data/Bool/Basic.lean", "exists_bool")
 """
-with Dojo(theorem) as (dojo, state):
-    root = Node(state=state, value=None)
-    breadth_first_search(root)
-    # state, action, next_state, reward
-    dataset = extract_data(root)
-    # state, reward
-    dataset2 = extract_data2(root)
-    for data in dataset:
-        print(data)
-    for data in dataset2:
-        print(data)
+def generate_dataset(theorem):
+    with Dojo(theorem) as (dojo, state):
+        root = Node(state=state, value=None)
+        breadth_first_search(root) #HTPSに置き換え可能
+        # state, action, next_state, reward
+        dataset = extract_data(root)
+        # state, reward
+        dataset2 = extract_data2(root)
+        """
+        for data in dataset:
+            print(data)
+        for data in dataset2:
+            print(data)
+        """
+        return dataset, dataset2
+  
+dataset, dataset2 = generate_dataset(theorem)
+for data in dataset:
+    print(data)
+
+for data in dataset2:
+    print(data)
