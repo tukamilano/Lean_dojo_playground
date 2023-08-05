@@ -18,5 +18,4 @@ def get_tactic(state, k=10):
     tactic_candidates = tokenizer.batch_decode(
         tactic_candidates_ids, skip_special_tokens=True
     )
-
     return tactic_candidates

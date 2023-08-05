@@ -1,4 +1,8 @@
+# 1. mathlibの全ての定理を収集する
+# 2. 言語モデルの強化学習を行う
+
 from collections import deque
+from transformer1 import train
 from transformer0 import get_tactic
 from lean_dojo import *
 
@@ -10,7 +14,7 @@ class Node:
         self.parents = []  # Add a list of parent nodes
         self.actions = {}
 
-    def generate_children(self, actions):
+    def generate_children(self, actions, dojo):
         if self.value is None:
             for action in actions:
                 child_state = dojo.run_tac(self.state, action)
@@ -26,7 +30,7 @@ class Node:
                 self.children.append(child)
                 self.actions[action] = child
 
-def breadth_first_search(root, max_nodes=5):
+def breadth_first_search(root, dojo, max_nodes=5):
     node_count = 0
     visited_states = set()
     queue = deque([root])
@@ -36,7 +40,7 @@ def breadth_first_search(root, max_nodes=5):
 
         if node.value is None and node.state not in visited_states:
             actions = get_tactic(node.state.pp)
-            node.generate_children(actions)
+            node.generate_children(actions, dojo)
             visited_states.add(node.state)
             node_count += 1 
 
@@ -90,34 +94,38 @@ def extract_data2(root):
                     if child.state not in visited_states:
                         queue.append(child)
     return data
+"""
+# mathlibのtheoremを全て収集したい(こういうことするよりカリキュラムラーニングさせる方が意味あるかも)
+def benchmark():
+    with open("/Users/milano/Downloads/leandojo_benchmark_4/random/train.json", "r") as json_file:
+        objects = json.load(json_file)
+
+    path_name = []
+    for object in objects:
+        path_name.append(object['file_path'],object['full_name'])
 
 repo = LeanGitRepo("https://github.com/yangky11/lean4-example", "7d711f6da4584ecb7d4f057715e1f72ba175c910")
-theorem = Theorem(repo, "Lean4Example.lean", "hello_world") 
-# mathlibのtheoremを全て収集したい
+theorem = Theorem(repo, path_name[i][0], path_name[i][1]) 
 """
-repo = LeanGitRepo("https://github.com/leanprover-community/mathlib4", "b342a33cff014bf01c918fe0199362c23566510c")
-trace(repo, dst_dir="traced_lean4-example")
-theorem = Theorem(repo, "Mathlib/Data/Bool/Basic.lean", "exists_bool")
+repo = LeanGitRepo("https://github.com/yangky11/lean4-example", "7d711f6da4584ecb7d4f057715e1f72ba175c910")
+theorem = Theorem(repo, "Lean4Example.lean", "hello_world") 
+"""
+repo = LeanGitRepo("https://github.com/leanprover-community/mathlib4", "5ad453cbd11b75f8b69df927eb1b2c98e7adabdc")
+theorem = Theorem(repo, "Mathlib/Data/Bool/Basic.lean", "Bool.exists_bool")
 """
 def generate_dataset(theorem):
-    with Dojo(theorem) as (dojo, state):
-        root = Node(state=state, value=None)
-        breadth_first_search(root) #HTPSに置き換え可能
-        # state, action, next_state, reward
-        dataset = extract_data(root)
-        # state, reward
-        dataset2 = extract_data2(root)
-        """
-        for data in dataset:
-            print(data)
-        for data in dataset2:
-            print(data)
-        """
-        return dataset, dataset2
-  
+    dojo, state = Dojo(theorem).__enter__()
+    root = Node(state=state, value=None)
+    breadth_first_search(root, dojo) #HTPSに置き換え可能
+    # state, action, next_state, reward
+    dataset = extract_data(root)
+    # state, reward
+    dataset2 = extract_data2(root)
+    return dataset, dataset2
+
 dataset, dataset2 = generate_dataset(theorem)
+
 for data in dataset:
     print(data)
 
-for data in dataset2:
-    print(data)
+train(dataset)

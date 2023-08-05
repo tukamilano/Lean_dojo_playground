@@ -1,12 +1,20 @@
 import json
-from lean_dojo import *
-from searchtree2.py import generate_dataset
+#from lean_dojo import *
+#from searchtree2 import generate_dataset
 
 def main():
     # JSON ファイルを開く(自分のパスに変更)
     with open("/Users/milano/Downloads/leandojo_benchmark_4/random/train.json", "r") as json_file:
         objects = json.load(json_file)
 
+    path_name = []
+    for object in objects:
+        path_name.append(object['file_path'],object['full_name'])
+
+if __name__ == "__main__":
+    main()
+
+"""
     entire_dataset = []
     entire_dataset2 = []
     # 並列化して処理を行うのあり（というかやるべき）90000個の定理を並列化して処理する
@@ -18,4 +26,4 @@ def main():
         entire_dataset2.extend(dataset2)
     
     return entire_dataset, entire_dataset2
-
+"""
